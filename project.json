@@ -1,0 +1,323 @@
+
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 45,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(kube_pod_info{namespace=\"monitoring\"}) by (node)",
+          "format": "table",
+          "instant": false,
+          "legendFormat": "{{Pods per Node}}",
+          "range": true,
+          "refId": "Pods per Node"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\"}[5m])) by (node)\n",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{CPU Usage (Cores)}}",
+          "range": true,
+          "refId": "CPU Usage (Cores"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "100 * sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\"}[5m])) by (node) \n/ sum(machine_cpu_cores) by (node)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{CPU Usage (%)}}",
+          "range": true,
+          "refId": "CPU Usage (%)"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(kube_pod_container_status_restarts_total{namespace=\"monitoring\"})\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Restarting Pods}}",
+          "range": true,
+          "refId": "Restarting Pods"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\"}[5m]))\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{CPU Usage}}",
+          "range": true,
+          "refId": "CPU Usage"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "count(kube_pod_info{namespace=\"monitoring\"})\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Running Pods}}",
+          "range": true,
+          "refId": "Running Pods"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "count(kube_deployment_status_replicas{namespace=\"monitoring\"})\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Running Deployments}}",
+          "range": true,
+          "refId": "Running Deployments"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"monitoring\"}[5m])) \n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Network Traffic (Receive)}}",
+          "range": true,
+          "refId": "Network Traffic (Receive)"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"monitoring\"}[5m]))\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Network Traffic}}",
+          "range": true,
+          "refId": "Network Traffic"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(container_memory_usage_bytes{namespace=\"monitoring\"})\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Memory Usage}}",
+          "range": true,
+          "refId": "Memory Usage"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_fs_reads_bytes_total{namespace=\"monitoring\"}[5m])) by (pod)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Disk read}}",
+          "range": true,
+          "refId": "Disk read"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_fs_writes_bytes_total{namespace=\"monitoring\"}[5m])) by (pod)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Disk writes}}",
+          "range": true,
+          "refId": "Disk Write"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "(time() - kube_pod_created{namespace=\"monitoring\"}) / 60 / 60 / 24\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Pod Age (Days)}}",
+          "range": true,
+          "refId": "Pod Age (Days)"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "avg(container_memory_usage_bytes{namespace=\"monitoring\"}) by (pod)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Avg Memory Usage}}",
+          "range": true,
+          "refId": "Avg Memory Usage"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\"}[5m])) by (pod)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{CPU Usage (Cores)}}",
+          "range": true,
+          "refId": "CPU Usage (Cores)"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "kube_pod_info{namespace=\"monitoring\"}\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Pod info}}",
+          "range": true,
+          "refId": "Pod info"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "container_memory_usage_bytes{namespace=\"monitoring\"}\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{Memory usage( Bytes)}}",
+          "range": true,
+          "refId": "Memory usage( Bytes)"
+        }
+      ],
+      "title": "Panel Title",
+      "transparent": true,
+      "type": "gauge"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "PROJ",
+  "uid": "behsbi2pbt5hcc",
+  "version": 5,
+  "weekStart": ""
+}
