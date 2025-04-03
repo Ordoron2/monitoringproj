@@ -1,4 +1,4 @@
-roject Overview: Kubernetes Monitoring Dashboard
+Project Overview: Kubernetes Monitoring Dashboard
 Objective:
 The goal of this project is to create a dashboard in Grafana that helps monitor the health and performance of a Kubernetes cluster. The dashboard will use Prometheus to collect real-time data and display key metrics at different levels: Node, Namespace, Pod, and Container. This will allow users to track resource usage, detect issues, and optimize their cluster efficiently.
 
